@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">       
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Twitter-Clone</title>
+        <link rel="stylesheet" href="">
+    </head>
+    <body>
+        <h2>Cloudinary</h2>
+
+        {% for picture in pictures %}
+            <img src="{{ picture.image.url }}" style="width: 300px">
+        {% endfor %}
+
+    </body>
+</html>
