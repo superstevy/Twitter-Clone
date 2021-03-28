@@ -1,36 +1,72 @@
 <!DOCTYPE html>
 {% load static %}
 <html lang="en">
-    <head>
-        <meta charset="utf-8">       
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- Bootstrap -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        <title>Twitter-Clone</title>
-        <!-- Icon -->
-        <link href="{% static 'img\logo-twitterblue.svg' %}" rel="icon">
-         <!-- CSS -->
-       <link rel="stylesheet" href="{% static 'style.css' %}">
-         <!-- Script -->
-        <script src="{% static 'app.js' %}"></script>
-    </head>
-    <body class="home">
-        {% load cloudinary %}
-        <h2>Cloudinary</h2>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- Bootstrap -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl"
+      crossorigin="anonymous"
+    />
+    <title>Twitter-Clone</title>
+    <!-- Icon -->
+    <link href="{% static 'img\logo-twitterblue.svg' %}" rel="icon" />
+    <!-- CSS -->
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+    <!-- JQuery -->
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.js"
+      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+      crossorigin="anonymous"
+    ></script>
+    <!-- Script "LIKES" -->
+    <script src="{% static 'app.js' %}"></script>
+  </head>
+  <body class="home">
+    {% load cloudinary %} {% for tweet in tweets %}
+    <div class="container">
+      <div class="main">
+        <div class="tweet-list">
+          <div class="tweet">
+            <div class="user">
+              <a href="#">
+                <img src="{% static 'img/sample-icon.jpg' %}" class="" />
+              </a>
+            </div>
 
-        {% for picture in pictures %}
-            <img src="{{ picture.image.url }}" style="width: 300px">
-        {% endfor %}
+            <div class="content">
+              <div class="name">
+                <a href="#" class="">
+                  <span class="nickname"> {{ tweet.name }} </span>
+                  <span class="datetime"> {{ tweet.created_at }} </span>
+                </a>
+                <a href="/update/{{tweet.id}}">Edit</a>
+                <br />
+                <a href="/tweetDelete/20/">Delete</a>
+              </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+              <div class="input-area" style="word-wrap: break-word;">{{ tweet.body }}</div>
 
-        <script>
-            $(function() {
-                $('.js-popover').popover({
-                    container: 'body'
-                })
-            })
-        </script>
-        <input type="hidden" name="csrfmiddlewaretoken" value="AS8SlBwc5M7Wj9Jtmb42RUN2EqRiICgBnmXSodC6dZ56Nc3zme4atILh6voJYsjp">
-    </body>
+              <img src="{{ tweet.image.url }}" style="width: 300px" />
+
+              <div class="icon-list">
+                <div class="like js-like" data-tweet-id="20">
+                  <img src="{% static 'img/heart-icon.png'%}" />
+                </div>
+
+                <div class="like-count js-like-count">
+                  {{ tweet.like_count }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

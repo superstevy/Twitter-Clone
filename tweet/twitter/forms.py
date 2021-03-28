@@ -1,7 +1,11 @@
 from django import forms
-from .models import Picture
+from .models import Tweet
 
-class PictureForm(forms.ModelForm):
+
+class TweetForm(forms.ModelForm):
     class Meta:
-        model = Picture
+        model = Tweet
         fields = '__all__'
+        widgets = {
+            'body': forms.Textarea()
+        }

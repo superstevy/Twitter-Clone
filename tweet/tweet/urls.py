@@ -20,5 +20,6 @@ from twitter import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('upload/', views.loadPicture, name='upload')
+    path('upload/', views.loadTweet, name='upload'),
+    path('update/<int:id>', views.updateTweet, name='update'),
 ]
