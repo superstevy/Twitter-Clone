@@ -26,7 +26,9 @@
     <script src="{% static 'app.js' %}"></script>
   </head>
   <body class="home">
-    {% load cloudinary %} {% for tweet in tweets %}
+    {% load cloudinary %} 
+    <a href="{% url 'upload' %}" class="btn btn-secondary" style="position:fixed;">Upload</a>
+    {% for tweet in tweets %}
     <div class="container">
       <div class="main">
         <div class="tweet-list">
@@ -45,20 +47,25 @@
                 </a>
                 <a href="/update/{{tweet.id}}">Edit</a>
                 <br />
-                <a href="/tweetDelete/20/">Delete</a>
+                <a href="/delete/{{tweet.id}}">Delete</a>
               </div>
 
               <div class="input-area" style="word-wrap: break-word;">{{ tweet.body }}</div>
 
               <img src="{{ tweet.image.url }}" style="width: 300px" />
 
-              <div class="icon-list">
+              <!-- <div class="icon-list">
                 <div class="like js-like" data-tweet-id="20">
                   <img src="{% static 'img/heart-icon.png'%}" />
-                </div>
-
+                </div> -->
+                <br> <br>
                 <div class="like-count js-like-count">
-                  {{ tweet.like_count }}
+                    <form action="{% url 'LikePost' tweet.pk %}" method="POST">
+                        {% csrf_token %}
+                        <button type="submit", name="tweet_id", value="{{ tweet.id }}", class="btn btn-primary btn-sm">Like</button> 
+                        {{ total_likes }}
+                    </form>
+                  
                 </div>
               </div>
             </div>
