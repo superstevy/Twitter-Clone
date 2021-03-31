@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'twitter',
     'cloudinary',
+    'secretballot',
+    'likes',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +55,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'likes.middleware.SecretBallotUserIpUseragentMiddleware',
 ]
 
 ROOT_URLCONF = 'tweet.urls'
@@ -126,8 +129,8 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 
-cloudinary.config( 
-  cloud_name = "dxct8rh7c", 
-  api_key = "211453584171844", 
-  api_secret = "RJj5Er47QjQ33yDV_9Pig2NNnjs" 
+cloudinary.config(
+    cloud_name="dxct8rh7c",
+    api_key="211453584171844",
+    api_secret="RJj5Er47QjQ33yDV_9Pig2NNnjs"
 )

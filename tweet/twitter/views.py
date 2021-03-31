@@ -26,8 +26,7 @@ def loadTweet(request):
 
 def updateTweet(request, id):
     tweet = Tweet.objects.get(pk=id) 
-    if request.POST:
-              
+    if request.POST:              
         form = TweetForm(request.POST, request.FILES, instance=tweet)
         if form.is_valid():
             form.save()
