@@ -43,8 +43,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'twitter',
     'cloudinary',
-    'secretballot',
-    'likes',
 ]
 
 MIDDLEWARE = [
