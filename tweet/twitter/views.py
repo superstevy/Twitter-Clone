@@ -9,8 +9,10 @@ from cloudinary.forms import cl_init_js_callbacks
 
 def index(request):
     tweets = Tweet.objects.all()
-    
-    ctx = {'tweets': tweets
+    stuff = get_object_or_404(Tweet, id=self.kwargs['pk'])
+    total_likes = stuff.total_likes()
+    ctx = {'tweets': tweets,
+           'total_likes': total_likes
            }
     return render(request, 'twitter/index.html', ctx)
 
