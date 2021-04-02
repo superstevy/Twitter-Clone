@@ -1,1 +1,0 @@
-<?php include_once("tweet/twitter/templates/twitter/index.html"); ?>
