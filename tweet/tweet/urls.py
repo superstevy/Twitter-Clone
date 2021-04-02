@@ -23,5 +23,5 @@ urlpatterns = [
     path('upload/', views.loadTweet, name='upload'),
     path('update/<int:id>', views.updateTweet, name='update'),
     path('like/<int:pk>', views.likePost, name='LikePost'),
-    path('index/delete/<int:pk>', views.deleteTweet, name='delete'),
+    path('delete/<int:id>', views.deleteTweet, name='delete'),
 ]

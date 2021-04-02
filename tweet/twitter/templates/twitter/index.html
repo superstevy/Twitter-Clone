@@ -17,17 +17,13 @@
     <!-- CSS -->
     <link rel="stylesheet" href="{% static 'style.css' %}" />
     <!-- JQuery -->
-    <script
-      src="https://code.jquery.com/jquery-3.5.1.js"
-      integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
     <!-- Script "LIKES" -->
     <script src="{% static 'app.js' %}"></script>
   </head>
   <body class="home">
     {% load cloudinary %} 
-    <a href="{% url 'upload' %}" class="btn btn-secondary" style="position:fixed;">Upload</a>
+    <a href="{% url 'upload' %}" class="btn btn-secondary" style="position:fixed; color: yellow;">Upload New Tweet</a>
     {% for tweet in tweets %}
     <div class="container">
       <div class="main">
@@ -45,25 +41,20 @@
                   <span class="nickname"> {{ tweet.name }} </span>
                   <span class="datetime"> {{ tweet.created_at }} </span>
                 </a>
-                <a href="/update/{{tweet.id}}">Edit</a>
+                <a style="border: 1px solid brown; border-radius: 30%; padding: 8px; background-color: maroon; color: white;" href="/update/{{tweet.id}}">Edit</a>
                 <br />
-                <a href="/delete/{{tweet.id}}">Delete</a>
+                <a style="border: 1px solid red; border-radius: 20%; padding: 8px; background-color: red; color: white; margin-right: 20px;" href="/delete/{{tweet.id}}">Delete</a>
               </div>
 
               <div class="input-area" style="word-wrap: break-word;">{{ tweet.body }}</div>
 
-              <img src="{{ tweet.image.url }}" style="width: 300px" />
-
-              <!-- <div class="icon-list">
-                <div class="like js-like" data-tweet-id="20">
-                  <img src="{% static 'img/heart-icon.png'%}" />
-                </div> -->
+              <img src="{{ tweet.image.url }}" style="width: 300px">
                 <br> <br>
-                <div class="like-count js-like-count">
+                <div class="like-count">
                     <form action="{% url 'LikePost' tweet.pk %}" method="POST">
                         {% csrf_token %}
                         <button type="submit", name="tweet_id", value="{{ tweet.id }}", class="btn btn-primary btn-sm">Like</button> 
-                        {{ total_likes }}
+                        {{ tweet.like_count }}
                     </form>
                   
                 </div>
